@@ -1,0 +1,306 @@
+@import "tailwindcss";
+
+
+
+@theme {
+
+  /* --- COLORES SEMÁNTICOS (Mapeo) --- */
+  --color-main: var(--bg-main);
+  --color-surface: var(--bg-surface);
+  --color-surface-hover: var(--bg-surface-hover);
+
+
+  /* Textos */
+
+  --color-title: var(--text-title);
+
+  --color-body: var(--text-body);
+
+  --color-muted: var(--text-muted);
+
+ 
+
+  /* Acentos de Marca (Extraídos de la tabla de precios y botones) */
+
+  --color-primary: var(--brand-green);         /* Botón Principal / Curso Pro */
+
+  --color-primary-hover: var(--brand-green-hover);
+
+  --color-secondary: var(--brand-orange);      /* Botón Secundario / Pro 3 meses */
+
+  --color-secondary-hover: var(--brand-orange-hover);
+
+  --color-accent-blue: var(--brand-blue);      /* "Es produc" / Pro 1 mes */
+
+  --color-accent-cyan: var(--brand-cyan);      /* Banner inferior */
+
+  --color-accent-red: var(--brand-red);        /* Pro 12 meses */
+
+
+
+  /* Bordes y UI */
+
+  --color-border: var(--border-subtle);
+
+  --color-border-hover: var(--border-highlight);
+
+  --color-divider: var(--divider);
+
+
+
+  /* --- SOMBRAS Y EFECTOS --- */
+
+  /* Sombra dura estilo "Brutalism" del sticker Hello World */
+
+  --shadow-hard: 4px 4px 0px 0px #000000;
+
+ 
+
+  /* Sombra suave para cards */
+
+  --shadow-soft: 0px 4px 20px rgba(0, 0, 0, 0.5);
+
+ 
+
+  /* Glow para botones de acción (el verde brilla un poco) */
+
+  --shadow-glow-green: 0 0 20px rgba(22, 198, 93, 0.4);
+
+}
+
+
+
+@layer base {
+
+  :root {
+
+    /* --- PALETA EXACTA MOUREDEV PRO --- */
+
+   
+
+    /* Fondos */
+
+    --bg-main: #111113;       /* Negro casi puro (fondo real) */
+
+
+
+    --bg-surface: #000000e6;    /* Fondo de la tabla de precios */
+
+    --bg-surface-hover: #1e1e20; /* Hover en filas de tabla */
+
+
+
+    /* Textos */
+
+    --text-title: #ffffff;    /* Blanco puro 100% */
+
+    --text-body: #a1a1aa;     /* Gris neutro (Zinc-400) para lectura */
+
+    --text-muted: #52525b;    /* Gris oscuro para detalles secundarios */
+
+
+
+    /* Acentos (Identicos a las capturas) */
+
+    --brand-green: #16a34a;        /* Verde base (botones) */
+
+    --brand-green-hover: #15803d;  /* Verde oscuro hover */
+
+    /* Nota: El botón verde en la home es más brillante, ajustamos a: */
+
+    --brand-green-bright: #22c55e;
+
+
+
+    --brand-orange: #f59e0b;       /* Naranja (Amber-500) - Botón "Ruta" */
+
+    --brand-orange-hover: #d97706;
+
+
+
+    --brand-blue: #3b82f6;         /* Azul (Blue-500) - Texto "es produc" */
+
+    --brand-cyan: #0ea5e9;         /* Cyan (Sky-500) - Banner inferior */
+
+    --brand-red: #ef4444;          /* Rojo (Red-500) - Texto "Pro 12 meses" */
+
+
+
+    /* UI Elements */
+
+    --divider: #27272a;            /* Líneas de la grilla y separadores */
+
+    --border-subtle: #27272a;      /* Bordes de cards */
+
+    --border-highlight: #3f3f46;   /* Bordes al hacer hover */
+
+  }
+
+
+
+  body {
+  background-color: var(--bg-main);
+  color: var(--text-body);
+  font-family: "Geist", sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  /* 1. CUADRÍCULA DE INGENIERÍA (Refinada) */
+  /* Usamos un color más suave y líneas más finas para que no compitan con el contenido */
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+
+  /* 2. EFECTO DE VIÑETA (Enfoque central) */
+  /* Crea un degradado que oscurece las esquinas y aclara el centro */
+  background-attachment: fixed;
+  background-position: center;
+}
+  /* Títulos (H1, H2...) */
+  h1, h2, h3, h4 {
+    color: var(--text-title);
+    font-weight: 800; /* Extra bold */
+    letter-spacing: -0.025em; /* Tight tracking */
+    line-height: 1.1;
+  }
+
+}
+
+
+@layer components {
+
+  /* --- BOTONES --- */
+
+ 
+
+  /* Botón Verde (Comenzar a aprender) */
+
+  .btn-primary {
+
+    background-color: var(--brand-green-bright);
+
+    color: #000000; /* Texto negro para contraste máximo */
+
+    font-weight: 700;
+
+    padding: 12px 24px;
+
+    border-radius: 8px; /* Bordes ligeramente redondeados, no full round */
+
+    transition: all 0.2s ease-in-out;
+
+    border: 1px solid transparent;
+
+  }
+
+ 
+
+  .btn-primary:hover {
+
+    background-color: #16a34a; /* Un poco más oscuro */
+
+    box-shadow: var(--shadow-glow-green);
+
+    transform: translateY(-1px);
+
+  }
+
+
+
+  /* Botón Naranja (Ver ruta) */
+
+  .btn-secondary {
+
+    background-color: var(--brand-orange);
+
+    color: #000000;
+
+    font-weight: 700;
+
+    padding: 12px 24px;
+
+    border-radius: 20px; /* En la imagen este botón es más redondeado (pill shape) */
+
+    transition: all 0.2s ease-in-out;
+
+  }
+
+ 
+
+  .btn-secondary:hover {
+
+    background-color: var(--brand-orange-hover);
+
+    transform: translateY(-1px);
+
+  }
+
+
+
+  /* --- CARDS & PRECIOS --- */
+
+ 
+
+  /* Contenedor de Precios (Tabla) */
+
+  .pricing-table {
+
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    overflow: hidden;
+
+  }
+
+
+
+  /* Filas de la tabla */
+
+  .pricing-row {
+    border-bottom: 1px solid var(--divider);
+    transition: background-color 0.2s;
+
+  }
+
+
+  .pricing-row:hover {
+
+    background-color: var(--bg-surface-hover);
+
+  }
+
+
+
+  /* Headers de columnas (Checkmarks y Títulos) */
+
+  .text-pro-green { color: var(--brand-green-bright); }
+  .text-pro-blue { color: var(--brand-blue); }
+  .text-pro-orange { color: var(--brand-orange); }
+  .text-pro-red { color: var(--brand-red); }
+
+  /* --- TEXTO --- */
+  /* El estilo "es produc" (Azul y negrita) */
+
+  .highlight-blue {
+    color: var(--brand-blue);
+    font-weight: 800;
+
+  }
+
+  /* Badges (Etiquetas pequeñas arriba de títulos) */
+  .badge-roadmap {
+    background-color: var(--brand-orange);
+    color: black;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5);
+
+  }
+
+}
